@@ -1,0 +1,43 @@
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding: 10px 10px;
+  width: 70%;
+  margin: 30px auto;
+  box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-section input,
+.search-section select {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.search-section input {
+  flex: 2;
+}
+
+.search-section select {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  padding-left: 15px;
+}
+
+.search-section button {
+  background: #0094ff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 80px;
+}
+
+
+
