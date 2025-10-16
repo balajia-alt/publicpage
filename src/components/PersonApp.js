@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Sidebar from './components/Sidebar';
-import PersonalDetails from './components/PersonalDetails';
-import EducationDetails from './components/EducationDetails';
-import ProfessionalDetails from './components/ProfessionalDetails';
-import ReviewSubmit from './components/ReviewSubmit';
+import Sidebar from './Sidebar';
+import PersonalDetails from './PersonalDetails';
+import EducationDetails from './EducationDetails';
+import ProfessionalDetails from './ProfessionalDetails';
+import ReviewSubmit from './ReviewSubmit';
 import './PersonApp.css';
 
 function PersonApp() {

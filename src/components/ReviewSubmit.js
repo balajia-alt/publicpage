@@ -4,20 +4,23 @@ import { validateAll } from './validation';
 const ReviewSubmit = ({ personal, education, professional, setErrors, onBack, onSuccess }) => {
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [submitErrors, setSubmitErrors] = useState({});
+const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = () => {
-    setSubmitAttempted(true);
-    const errs = validateAll(personal, education, professional);
-    setErrors(errs);
-    setSubmitErrors(errs);
+  setSubmitAttempted(true);
+  const errs = validateAll(personal, education, professional);
+  setErrors(errs);
+  setSubmitErrors(errs);
 
-    if (Object.keys(errs).length === 0) {
-      onSuccess();
-    } else {
-      const el = document.querySelector('.content-card');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  if (Object.keys(errs).length === 0) {
+    setShowPopup(true);  // <-- open modal
+    onSuccess(); // you can keep this if it performs logic, not alert
+  } else {
+    const el = document.querySelector('.content-card');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 
   const renderField = (label, value) => (
   <tr>
@@ -149,9 +152,29 @@ const ReviewSubmit = ({ personal, education, professional, setErrors, onBack, on
                  <button className="btn secondary" onClick={onBack}>
                   Back
                   </button>
-                   <button className="btn primary" onClick={handleSubmit}>
+                   <button className="btn primary_app" onClick={handleSubmit}>
                     Submit Application</button>
                      </div>
+
+
+            {showPopup && (
+  <div className="popup-overlay">
+    <div className="popup-box">
+      <h3>🎉 Application Submitted Successfully!</h3>
+      <p>Your details have been recorded.</p>
+      <div className="popup-actions">
+        <button className="btn primary_app" onClick={() => setShowPopup(false)}>OK</button>
+        <button
+          className="btn secondary"
+          onClick={() => window.location.href = '/'} // change route if using react-router
+        >
+          Home
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
 
       </div>
   );

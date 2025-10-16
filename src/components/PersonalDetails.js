@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './PersonIndex.css'
 import { simpleValidatePersonal } from './validation';
 
 const states = [
@@ -243,7 +244,7 @@ const PersonalDetails = ({ data, setData, setActive, errors, setErrors }) => {
       {/* ---- Buttons ---- */}
       <div className="form-actions">
        
-        <button className="btn primary" onClick={next}>
+        <button className="btn primary_app" onClick={next}>
           Next: Education
         </button>
       </div>

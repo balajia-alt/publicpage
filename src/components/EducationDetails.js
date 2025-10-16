@@ -198,7 +198,7 @@ const EducationDetails = ({ data, setData, setActive, errors, setErrors }) => {
       {/* ---------- Buttons ---------- */}
       <div className="form-actions">
         <button className="btn secondary" onClick={prev}>Back: Personal</button>
-        <button className="btn primary" onClick={next}>Next: Professional</button>
+        <button className="btn primary_app" onClick={next}>Next: Professional</button>
       </div>
     </div>
   );

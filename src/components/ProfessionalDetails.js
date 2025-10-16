@@ -301,7 +301,7 @@ const ProfessionalDetails = ({ data, setData, setActive, errors, setErrors }) =>
       {/* Navigation */}
       <div className="form-actions">
         <button className="btn secondary" onClick={() => setActive('education')}>Back</button>
-        <button className="btn primary" onClick={next}>Next: Review & Submit</button>
+        <button className="btn primary_app" onClick={next}>Next: Review & Submit</button>
       </div>
     </div>
   );
