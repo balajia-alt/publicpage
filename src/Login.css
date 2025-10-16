@@ -73,12 +73,13 @@
   font-weight: 600;
   color: black;
   padding: 5px;
+
 }
 
 .login-form input {
   padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   font-size: 20px;
 }
 
@@ -94,12 +95,12 @@
   text-decoration: none;
 }
 
-button {
+.forget button {
   background: #2eb82e;
   color: white;
   border: none;
   width: 50%;
-  margin-left: 100px;
+   margin-left: 100px;
   padding: 14px;
   border-radius: 3px;
   font-size: 25px;

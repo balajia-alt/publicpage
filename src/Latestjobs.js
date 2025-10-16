@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Latestjobs.css";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import Logo from "./assets/dhatvi.jpg"
+import Logo from "./assets/dhatvi.jpg";
+import { useNavigate } from "react-router-dom";
+
 
 
 const jobs = [
@@ -39,6 +41,8 @@ const jobs = [
 
 function Careers() {
   const [selectedJob, setSelectedJob] = useState(null);
+      const navigate = useNavigate(); // ✅ initialize navigation
+  
 
   const handleOpen = (job) => {
     setSelectedJob(job);
@@ -74,7 +78,7 @@ function Careers() {
               <h1 className="hero__title">
                 Let’s Make the Most Unique Ideas Together
               </h1>
-              <button className="hero__cta">Apply Now →</button>
+              <button className="hero__cta"  onClick={() => navigate("/apply")}>Apply Now →</button>
             </div>
           </div>
         </section>

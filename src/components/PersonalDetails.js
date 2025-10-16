@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './PersonIndex.css'
 import { simpleValidatePersonal } from './validation';
 
 const states = [
@@ -96,6 +95,8 @@ const PersonalDetails = ({ data, setData, setActive, errors, setErrors }) => {
   onChange={(e) => {
     const value = e.target.value.replace(/\D/g, ''); // remove non-numeric chars
     if (value.length <= 10) setData({ ...data, phone: value }); // max 10 digits
+        setErrors(prev => ({ ...prev, phone: '' })); 
+
   }}
   placeholder="Enter 10-digit number"
 />
@@ -244,7 +245,7 @@ const PersonalDetails = ({ data, setData, setActive, errors, setErrors }) => {
       {/* ---- Buttons ---- */}
       <div className="form-actions">
        
-        <button className="btn primary_app" onClick={next}>
+        <button className="btn primary" onClick={next}>
           Next: Education
         </button>
       </div>
