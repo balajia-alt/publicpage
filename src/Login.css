@@ -16,8 +16,8 @@
 }
 
 .header .logo-img{
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: 150px;
 }
 .header .highlight{
     color: rgb(42, 129, 42);
@@ -78,7 +78,7 @@
 
 .login-form input {
   padding: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 20px;
   font-size: 20px;
 }
@@ -146,8 +146,8 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 3;
-  border: 1px solid gray;
-  border-radius: 5px;
+  border: 1px solid black;
+  border-radius: 20px;
   padding: 0px 10px;
 }
 

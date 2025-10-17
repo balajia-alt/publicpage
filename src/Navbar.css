@@ -22,26 +22,28 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 
 .dhativi-text {
   font-weight: 700;
-  font-size: 24px;
+  font-size: 34px;
   color: #000;
 }
 
 .green-line {
-  width: 100%; /* line matches the width of DhaTvi text */
+  width: 90%; /* line matches the width of DhaTvi text */
   height: 2px;
   background-color: #00995e;
   margin: 2px 0;
 }
 
 .business-text {
-  font-size: 12px;
+  font-size: 13px;
   color: #000;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  min-width: 200px;
 }
 
 .nav-links {
@@ -49,7 +51,7 @@
   list-style: none;
   gap: 30px;
   font-weight: 500;
-  color: #333;
+  color: #333
 }
 
 .login-btn {
@@ -65,4 +67,13 @@
 
 .login-btn:hover {
   background: #007be0;
+}
+
+.nav-links li {
+  cursor: pointer; /* 👈 shows pointer hand when hovering */
+  transition: color 0.3s ease;
+}
+
+.nav-links li:hover {
+  color: #008000; /* optional: green hover color */
 }
