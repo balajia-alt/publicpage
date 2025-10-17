@@ -118,13 +118,13 @@ function Latestjobs({ subscribeRef }) {
       </footer>
 
       {/* Subscription Confirmation Popup */}
-{/* Top Toast Notification */}
 {showPopup && (
-  <div className="toast-notification success top">
-    🎉 You have been successfully subscribed to <strong>DhaTvi Business Solutions!</strong>
+  <div className="popup-overlay">
+    <div className="popup-message success">
+      <p>🎉 You have been successfully subscribed to <strong>DhaTvi Business Solutions!</strong></p>
+    </div>
   </div>
 )}
-
 
     </>
   );

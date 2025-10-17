@@ -10,6 +10,8 @@ import Home from "./Home";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import QuickDetails  from "./QuickDetails";
+import PersonIndex from "./components/PersonIndex";
+
 
 function App() {
   // Refs for scrolling
@@ -23,7 +25,7 @@ function App() {
 
   return (
     <div>
-      {/* <Navbar
+       <Navbar
         scrollToAbout={scrollToAbout}
         scrollToJobs={scrollToJobs}
         scrollToSubscribe={scrollToSubscribe}
@@ -33,6 +35,14 @@ function App() {
       <HeroSection />
       <SearchSection />
 
+     <BrowserRouter>
+     <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
+      <Route path="/apply" element={<PersonIndex/>}/>
+     </Routes>
+     </BrowserRouter>
      
       <div ref={aboutRef}>
         <AboutSection />
@@ -41,7 +51,7 @@ function App() {
     
       <div ref={jobsRef}>
         <Latestjobs subscribeRef={subscribeRef} />
-      </div> */}
+      </div> 
 
       <BrowserRouter>
       <Routes>

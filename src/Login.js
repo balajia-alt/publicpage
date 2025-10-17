@@ -90,7 +90,7 @@ function Login({ onLoginSuccess }) {
             <a href="#">Forgot Password?</a>
           </div>
 
-          <button type="submit" disabled={!!error}>
+          <button  type="submit" disabled={!!error}>
             Login
           </button>
         </form>
