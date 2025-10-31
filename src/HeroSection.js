@@ -18,7 +18,7 @@ const HeroSection = () => {
           We are giving the best IT solutions so far and one of the best IT
           solutions ever we have the best team to make every idea possible.
         </p>
-        <button className="apply-btn"  onClick={() => navigate("/apply")}>Apply Now →</button>
+        <button className="apply-btn"  onClick={() => navigate("/jobs")}>Apply Now →</button>
       </div>
 
       <div className="hero-image">

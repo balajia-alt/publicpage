@@ -9,28 +9,41 @@ function Login({ onLoginSuccess }) {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [userInput, setUserInput] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  // Validate email or 10-digit mobile
+  // ✅ Validate email or 10-digit mobile
   const validateInput = (value) => {
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     const isMobile = /^\d{10}$/.test(value);
 
-    if (value === "") {
-      setError("");
-    } else if (isEmail || isMobile) {
-      setError("");
-    } else {
-      setError("Please enter a valid 10-digit mobile number or email.");
-    }
+    if (value === "") setError("");
+    else if (isEmail || isMobile) setError("");
+    else setError("Please enter a valid 10-digit mobile number or email.");
 
     setUserInput(value);
   };
 
+  // ✅ Password validation
+  const validatePassword = (value) => {
+    const passwordRegex =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (value === "") setPasswordError("");
+    else if (!passwordRegex.test(value))
+      setPasswordError(
+        "Password must have at least 8 characters, including uppercase, lowercase, number & special character."
+      );
+    else setPasswordError("");
+
+    setPassword(value);
+  };
+
+  // ✅ Handle Login
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Final validation
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInput);
     const isMobile = /^\d{10}$/.test(userInput);
 
@@ -39,8 +52,25 @@ function Login({ onLoginSuccess }) {
       return;
     }
 
+    if (passwordError || password === "") {
+      setPasswordError("Please enter a valid password format.");
+      return;
+    }
+
+    // ✅ Save login info
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userEmail", userInput);
+
     if (onLoginSuccess) onLoginSuccess();
-    navigate("/");
+
+    // ✅ Check if this specific user's details were already submitted
+    const detailsSubmitted = localStorage.getItem(`detailsSubmitted_${userInput}`);
+
+    if (detailsSubmitted === "true") {
+      navigate("/"); // Go directly to main page
+    } else {
+      navigate("/quickdetails"); // Go to form if not filled
+    }
   };
 
   return (
@@ -76,6 +106,8 @@ function Login({ onLoginSuccess }) {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => validatePassword(e.target.value)}
               required
             />
             <span
@@ -85,12 +117,17 @@ function Login({ onLoginSuccess }) {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
+          {passwordError && <p className="error-msg">{passwordError}</p>}
 
           <div className="forgot">
             <a href="#">Forgot Password?</a>
           </div>
 
-          <button  type="submit" disabled={!!error}>
+          <button
+            className="login-btn-Login"
+            type="submit"
+            disabled={!!error || !!passwordError}
+          >
             Login
           </button>
         </form>

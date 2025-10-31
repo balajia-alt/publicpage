@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutSection.css";
-import AboutImage from "./assets/About.png"; // use your image file here
+import AboutImage from "./assets/about.jpg"; // use your image file here
 
 const AboutSection = () => {
   return (
@@ -10,8 +10,8 @@ const AboutSection = () => {
       </div>
 
       <div className="about-content">
-        <h2>Discover who we are and what drives us.</h2>
-        <p>
+        <h2 className="heading">Discover who we are and what drives us.</h2>
+        <p className="description">
           We help businesses grow by merging technology and customer experience
           into one seamless journey. From smart software and e-commerce
           platforms to reliable IT operations and voice support, we’ve got you

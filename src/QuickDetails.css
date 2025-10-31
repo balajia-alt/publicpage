@@ -6,7 +6,8 @@
 
 .quick-details-container-header {
   display: flex;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  
   
 }
 
@@ -16,7 +17,7 @@
   /* display: block; */
   /* margin: 0 auto 10px; */
   margin-left: 0px;
-  background: #000;
+  /* background: #000; */
 }
 
 .dhatvi-text{
@@ -40,7 +41,7 @@
   color: #333;
   text-align: center;
   /* margin: 0 auto; */
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 /* h2{
@@ -82,7 +83,7 @@
 }
 
   .email-row {
-    width: 510px;
+    width: 545px;
 
 }
 .phone-row {
@@ -92,12 +93,12 @@
 }
 .highest-qualification-course-row{
   margin-top: 10px;
-  width: 570px;
+  width: 545px;
   gap: 15px;
 }
 
 .year-of-passing {
-  width: 600px;
+  width: 545px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -105,12 +106,12 @@
 .college-name {
   display: flex;
   gap: 15px;
-  width: 600px;
+  width: 545px;
   margin-bottom: 10px;
     
 }
 .cgpa-row {
-  width: 565px;
+  width: 545px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -173,11 +174,11 @@
 }
 
 .current-company-input{
-  width: 620px;
+  width: 545px;
 }
 
 .experience-years {
-  width: 575px;
+  width: 545px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -227,7 +228,7 @@
 }
 
 .resume-upload input[type="file"] {
-  width: 104%;
+  width: 545px;
   padding: 8px 12px;
   border: 1.5px solid #227922;
   border-radius: 25px;
@@ -246,7 +247,7 @@
 }
 
 .skills-section input {
-  width: 103%;
+  width: 545px;
   padding: 10px 15px;
   border: 1.5px solid #219957;
   border-radius: 25px;

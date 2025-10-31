@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Latestjobs.css";
+import { useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import Logo from "./assets/dhatvi.jpg";
 
@@ -13,6 +14,7 @@ const jobs = [
 ];
 
 function Latestjobs({ subscribeRef }) {
+    const navigate=useNavigate();
   const [selectedJob, setSelectedJob] = useState(null);
   const [email, setEmail] = useState("");
   const [showPopup, setShowPopup] = useState(false);
@@ -36,7 +38,7 @@ function Latestjobs({ subscribeRef }) {
 
   return (
     <>
-      <section className="latest-jobs">
+      <section id="latest-jobs" className="latest-jobs">
         <h2 className="latest-jobs__title">Latest Jobs</h2>
         <h3 className="latest-jobs__subtitle">A Rewarding Career Awaits For You !</h3>
 
@@ -53,7 +55,7 @@ function Latestjobs({ subscribeRef }) {
           <div className="hero__overlay">
             <div className="hero__content">
               <h1 className="hero__title">Let’s Make the Most Unique Ideas Together</h1>
-              <button className="hero__cta">Apply Now →</button>
+              <button className="hero__cta" onClick={()=>navigate("/jobs")}>Apply Now →</button>
             </div>
           </div>
         </section>
@@ -65,7 +67,7 @@ function Latestjobs({ subscribeRef }) {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h2>{selectedJob.title}</h2>
             <p>{selectedJob.description}</p>
-            <button className="apply-btn">Apply Now →</button>
+            <button className="apply-btn-latest" onClick={()=>navigate("/apply")}>Apply Now →</button>
             <button className="close-btn" onClick={handleClose}>✖</button>
           </div>
         </div>
@@ -89,18 +91,19 @@ function Latestjobs({ subscribeRef }) {
           </div>
         </div>
 
-        <div className="footer">
+        <div className="latest-job-footer">
           <div className="footer-subscribe__links">
-            <a href="/about">About us</a>
-            <a href="/discover">Discover</a>
-            <a href="/explore">Explore</a>
+            <a href="https://www.dhatvibs.com/about/">About us</a>
+            {/* <a href="/discover">Discover</a> */}
+            {/* <a href="/explore">Explore</a> */}
+            <a href="/contact">Contact us</a>
           </div>
 
           <div className="social-links">
             <a href="https://facebook.com/" target="_blank" rel="noreferrer"><FaFacebookF /></a>
             <a href="https://twitter.com/" target="_blank" rel="noreferrer"><FaTwitter /></a>
-            <a href="https://instagram.com/" target="_blank" rel="noreferrer"><FaInstagram /></a>
-            <a href="https://linkedin.com/" target="_blank" rel="noreferrer"><FaLinkedinIn /></a>
+            <a href="https://www.instagram.com/dhatviofficial?utm_source=qr&igsh=YndrNWU4MnZwZmY5" target="_blank" rel="noreferrer"><FaInstagram /></a>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7387755680721444864" target="_blank" rel="noreferrer"><FaLinkedinIn /></a>
           </div>
         </div>
 

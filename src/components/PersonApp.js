@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Sidebar from './Sidebar';
 import PersonalDetails from './PersonalDetails';
 import EducationDetails from './EducationDetails';
@@ -67,6 +67,44 @@ function PersonApp() {
   const goTo = (step) => {
     setActive(step);
   };
+   useEffect(() => {
+  const savedData = localStorage.getItem("quickDetailsData");
+  if (savedData) {
+    const data = JSON.parse(savedData);
+
+    // ✅ Autofill Personal Details
+    setPersonal((prev) => ({
+      ...prev,
+      firstName: data.firstName || "",
+      lastName: data.lastName || "",
+      email: data.email || "",
+      phone: data.phone || "",
+      alternativePhone: data.alternatePhone || "",
+      currentAddress: "",
+      permanentAddress: "",
+    }));
+
+    // ✅ Autofill Education Details
+    setEducation((prev) => ({
+      ...prev,
+      collegeNameUG: data.college || "",
+      yearUG: data.yearOfPassing || "",
+      cgpaUG: data.cgpa || "",
+      gapReasonUG: "",
+      interOrDiploma: data.course || "",
+    }));
+
+    // ✅ Autofill Professional Details
+    setProfessional((prev) => ({
+      ...prev,
+      jobType: data.employeeType || "",
+      skills: data.skills || "",
+      resume: data.resume || null,
+      companyName: data.companyName || "",
+      experienceYears: data.experienceYears || "",
+    }));
+  }
+}, []);
 
   return (
     <div className="dashboard">
@@ -74,7 +112,7 @@ function PersonApp() {
         <div className="brand">
           <div> <img className="brand-circle" src="logo.jpg" alt="Company Logo" /></div>
           <div>
-            <div className="brand-title">DhatVi Business</div>
+            <div className="brand-title">DhaTvi Business</div>
             <div className="brand-sub">Driving Technology</div>
           </div>
         </div>
@@ -84,8 +122,8 @@ function PersonApp() {
       </aside>
 
       <main className="main-content">
-        <header className="topbar">
-          <h2>Job Application Form</h2>
+        <header>
+          <h2 className="topbar">Job Application Form</h2>
         </header>
 
         <section className="content-card">

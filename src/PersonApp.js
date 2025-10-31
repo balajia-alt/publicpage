@@ -74,7 +74,7 @@ function PersonApp() {
         <div className="brand">
           <div> <img className="brand-circle" src="logo.jpg" alt="Company Logo" /></div>
           <div>
-            <div className="brand-title">DhatVi Business</div>
+            <div className="brand-title">DhaTvi Business</div>
             <div className="brand-sub">Driving Technology</div>
           </div>
         </div>

@@ -16,7 +16,7 @@
 }
 
 .header .logo-img{
-    width: 150px;
+    width: 180px;
     height: 150px;
 }
 .header .highlight{
@@ -27,6 +27,7 @@
 
 .welcomeimg{
     width: 70%;
+    /* margin-top: -40px; */
 }
 
 .container{
@@ -40,7 +41,8 @@
 }
 .right {
     padding: 40px;
-    margin-right: 150px;
+    margin-right: 20px;
+    margin-left: 80px;
     width: 50%;
     margin-bottom: 100px;
      border-radius: 20px; /*rounded edges*/
@@ -115,6 +117,17 @@ button:hover {
   color: black;
 }
 
+.login-btn-Login{
+  background: #30a830;
+  color: white;
+  padding: 10px;
+  margin: auto;
+  width: 100px;
+  font-size: medium;
+  text-align: center;
+  
+
+}
 .contact {
   margin-top: 20px;
   font-size: 20px;

@@ -22,7 +22,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Validation function
+  // ✅ Validation function
   const validate = (name, value) => {
     let message = "";
 
@@ -61,16 +61,30 @@ const Register = () => {
     setErrors((prev) => ({ ...prev, [name]: message }));
   };
 
+  // ✅ Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    validate(name, value);
+
+    // ✅ Allow only alphabets for first and last name
+    if ((name === "firstname" || name === "lastname") && !/^[A-Za-z]*$/.test(value)) {
+      return; // ignore invalid characters
+    }
+
+    // ✅ Auto-capitalize first letter for first & last name
+    const formattedValue =
+      name === "firstname" || name === "lastname"
+        ? value.charAt(0).toUpperCase() + value.slice(1)
+        : value;
+
+    setFormData((prev) => ({ ...prev, [name]: formattedValue }));
+    validate(name, formattedValue);
   };
 
+  // ✅ Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Run full validation before submit
+    // Run validation on all fields
     Object.keys(formData).forEach((key) => validate(key, formData[key]));
 
     const hasErrors = Object.values(errors).some((msg) => msg);
@@ -209,7 +223,9 @@ const Register = () => {
             <p className="error">{errors.confirmPassword}</p>
           )}
 
-          <button type="submit">Submit</button>
+          <button className="submit-reg" type="submit">
+            Submit
+          </button>
         </form>
 
         <p className="login-text">

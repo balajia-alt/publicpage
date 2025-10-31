@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./QuickDetails.css";
 import Logo from "./assets/dhatvi.jpg";
+import { useNavigate } from "react-router-dom";
 
 const QuickDetails = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,8 +20,8 @@ const QuickDetails = () => {
     employeeType: "Fresher",
     companyName: "",
     experienceYears: "",
-    resume: null, // ✅ Add resume state
-    skills:"",
+    resume: null,
+    skills: "",
   });
 
   const [emailError, setEmailError] = useState("");
@@ -26,21 +29,45 @@ const QuickDetails = () => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
-    if (name === "email") {
-      if (value && !value.endsWith("@gmail.com")) {
-        setEmailError(
-          "Please enter a valid Gmail address (e.g., example@gmail.com)"
-        );
-      } else {
-        setEmailError("");
-      }
-    }
+    // ✅ Restrict alphabets only
+    const alphaOnly = /^[A-Za-z\s]*$/;
+    // ✅ Restrict numbers only
+    const numericOnly = /^[0-9]*$/;
+    // ✅ Restrict CGPA to digits + one decimal
+    const cgpaPattern = /^[0-9]*\.?[0-9]*$/;
 
+    // ✅ For file upload
     if (name === "resume") {
-      setFormData({ ...formData, resume: files[0] }); // store the selected file
+      setFormData({ ...formData, resume: files[0] });
       return;
     }
 
+    // ✅ For email validation
+    if (name === "email") {
+      if (value && !value.endsWith("@gmail.com")) {
+        setEmailError("Please enter a valid Gmail address (e.g., example@gmail.com)");
+      } else {
+        setEmailError("");
+      }
+      setFormData({ ...formData, email: value });
+      return;
+    }
+
+    // ✅ Validation by field
+    if (["firstName", "lastName", "college", "course", "companyName", "skills"].includes(name)) {
+      if (!alphaOnly.test(value)) return; // block non-alphabets
+    }
+
+    if (["phone", "alternatePhone"].includes(name)) {
+      if (!numericOnly.test(value)) return; // block non-numbers
+      if (value.length > 10) return; // restrict to 10 digits
+    }
+
+    if (name === "cgpa") {
+      if (!cgpaPattern.test(value)) return; // block invalid CGPA formats
+    }
+
+    // ✅ Update state
     setFormData({ ...formData, [name]: value });
   };
 
@@ -53,7 +80,17 @@ const QuickDetails = () => {
     }
 
     console.log("Form Data:", formData);
-    alert("Form submitted successfully!");
+
+    // ✅ Save user's submission status
+    const userEmail = localStorage.getItem("userEmail");
+    if (userEmail) {
+      localStorage.setItem(`detailsSubmitted_${userEmail}`, "true");
+    }
+    // ✅ Save user form data for autofill
+localStorage.setItem("quickDetailsData", JSON.stringify(formData));
+
+    // ✅ Navigate to main page
+    navigate("/");
   };
 
   return (
@@ -70,7 +107,6 @@ const QuickDetails = () => {
       <h2 className="quick-details-title">Basic Details</h2>
 
       <form className="details-form" onSubmit={handleSubmit}>
-        {/* Full Name */}
         <label>Full name</label>
         <div className="name-row">
           <input
@@ -91,7 +127,6 @@ const QuickDetails = () => {
           />
         </div>
 
-        {/* Email */}
         <label>Email ID *</label>
         <div className="email-row">
           <input
@@ -105,7 +140,6 @@ const QuickDetails = () => {
           {emailError && <p className="email-error">{emailError}</p>}
         </div>
 
-        {/* Phone */}
         <label>Phone Number *</label>
         <div className="phone-row">
           <input
@@ -124,9 +158,8 @@ const QuickDetails = () => {
             onChange={handleChange}
           />
         </div>
-        <label>Highest Qualification (B-Tech/Degree))</label>
 
-        {/* Highest Qualification */}
+        <label>Highest Qualification (B-Tech/Degree)</label>
         <div className="highest-qualification-course-row">
           <input
             type="text"
@@ -137,23 +170,22 @@ const QuickDetails = () => {
             required
           />
           <div className="year-of-passing">
-          <select
-            name="yearOfPassing"
-            value={formData.yearOfPassing}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Year of Passing</option>
-            {Array.from({ length: 15 }, (_, i) => 2025 - i).map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
+            <select
+              name="yearOfPassing"
+              value={formData.yearOfPassing}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Year of Passing</option>
+              {Array.from({ length: 15 }, (_, i) => 2025 - i).map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
-        {/* College + CGPA */}
         <div className="college-name">
           <input
             type="text"
@@ -163,8 +195,9 @@ const QuickDetails = () => {
             onChange={handleChange}
             required
           />
-          </div>
-          <div className="cgpa-row">
+        </div>
+
+        <div className="cgpa-row">
           <input
             type="text"
             name="cgpa"
@@ -174,8 +207,6 @@ const QuickDetails = () => {
           />
         </div>
 
-
-        {/* Employee Type */}
         <label>Employee Type</label>
         <div className="employee-type">
           <label>
@@ -199,43 +230,26 @@ const QuickDetails = () => {
             Experience
           </label>
         </div>
-        {/* Add this after Employee Type / Experience section */}
-{formData.employeeType === "Fresher" && (
-  <div className="skills-section">
-    <label>Skills *</label>
-    <input
-      type="text"
-      name="skills"
-      placeholder="Enter your skills (comma separated)"
-      value={formData.skills || ""}
-      onChange={handleChange}
-      required
-    />
-  </div>
-)}
 
-{formData.employeeType === "Experience" && (
-  <div className="skills-section">
-    <label>Skills *</label>
-    <input
-      type="text"
-      name="skills"
-      placeholder="Enter your skills (comma separated)"
-      value={formData.skills || ""}
-      onChange={handleChange}
-      required
-    />
-  </div>
-)}
+        {/* ✅ Skills */}
+        <div className="skills-section">
+          <label>Skills *</label>
+          <input
+            type="text"
+            name="skills"
+            placeholder="Enter your skills (comma separated)"
+            value={formData.skills}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-
-        {/* Experience Section */}
+        {/* ✅ Experience Section */}
         {formData.employeeType === "Experience" && (
-            <>
-            
           <div className="experience-section">
             <label>Current Company Name</label>
-            <input className="current-company-input"
+            <input
+              className="current-company-input"
               type="text"
               name="companyName"
               placeholder="Enter Current Company Name"
@@ -246,26 +260,24 @@ const QuickDetails = () => {
 
             <label>Experience</label>
             <div className="experience-years">
-            <select
-              name="experienceYears"
-              value={formData.experienceYears}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Experience</option>
-              <option value="Less than 1 Year">Less than 1 Year</option>
-              <option value="1 Year">1-2 Years</option>
-              <option value="2 Years">2-3 Years</option>
-              <option value="3 Years">3-4 Years</option>
-              <option value="4 Years">4-5 Years</option>
-              <option value="5+ Years">5+ Years</option>
-            </select>
+              <select
+                name="experienceYears"
+                value={formData.experienceYears}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Experience</option>
+                <option value="Less than 1 Year">Less than 1 Year</option>
+                <option value="1-2 Years">1-2 Years</option>
+                <option value="2-3 Years">2-3 Years</option>
+                <option value="3-4 Years">3-4 Years</option>
+                <option value="4-5 Years">4-5 Years</option>
+                <option value="5+ Years">5+ Years</option>
+              </select>
             </div>
-           </div>
-            </>
+          </div>
         )}
 
-        {/* ✅ Resume Upload */}
         <div className="resume-upload">
           <label>Upload Resume *</label>
           <input
@@ -277,7 +289,6 @@ const QuickDetails = () => {
           />
         </div>
 
-        {/* Submit */}
         <button type="submit" className="submit-btn">
           Submit
         </button>
