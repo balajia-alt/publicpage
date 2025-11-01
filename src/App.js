@@ -13,7 +13,7 @@ import PersonIndex from "./components/PersonIndex";
 import "./App.css";
 import Job from "./Job";
 import JobDetail from "./Jobs/JobDetail";
-import Contact from "./components/Contact";
+import Contact from "./Jobs/Contact";
 // import JobList2 from "./components/JobList2";
 import SavedJobList from "./Profile/SavedJobList";
 import AppliedJobList from "./Profile/AppliedJobList";
