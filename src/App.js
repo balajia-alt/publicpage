@@ -14,7 +14,7 @@ import "./App.css";
 import Job from "./Job";
 import JobDetail from "./components/JobDetail";
 import Contact from "./components/Contact";
-import JobList2 from "./components/JobList2";
+// import JobList2 from "./components/JobList2";
 import SavedJobList from "./SavedJobList";
 import AppliedJobList from "./AppliedJobList";
 
@@ -78,10 +78,9 @@ function App() {
         <Route path="/jobs" element={<Job/>} />
         <Route path="/job/:id" element={<JobDetail/>} />
         <Route path="/contact" element={<Contact/>} />
-        <Route path="/joblist2"element={<JobList2/>} />
+        {/* <Route path="/joblist2"element={<JobList2/>} /> */}
         <Route path="/savedjoblist" element={<SavedJobList/>} />
         <Route path="/appliedjoblist" element={<AppliedJobList/>} />
-
 
       </Routes>
     </BrowserRouter>

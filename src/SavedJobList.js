@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./SavedJobList.css";
-import { FaTrashAlt, FaEye } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 
 const SavedJobList = () => {
+  const navigate = useNavigate();
+
   const [jobs, setJobs] = useState([
-    { title: "Frontened Developer", type: "Full Time", date: "12/06/2022", category: "Technology" },
-    { title: "Content Writing", type: "Internship", date: "12/06/2022", category: "Technology" },
-    { title: "Backened Developer", type: "Part time", date: "12/06/2022", category: "Technology" },
-    { title: "Web Developer", type: "Full Time", date: "12/06/2022", category: "Technology" },
+    {id:1, title: "Frontend Developer", type: "Full Time", date: "12/06/2022", category: "Technology" },
+    {id:2, title: "Content Writing", type: "Internship", date: "12/06/2022", category: "Technology" },
+    {id:3, title: "Backend Developer", type: "Part Time", date: "12/06/2022", category: "Technology" },
+    { id:4,title: "Web Developer", type: "Full Time", date: "12/06/2022", category: "Technology" },
   ]);
 
   const handleDelete = (index) => {
@@ -15,9 +18,9 @@ const SavedJobList = () => {
     setJobs(updatedJobs);
   };
 
-  const handleView = (job) => {
-    alert(`Viewing job: ${job.title}`);
-  };
+  // const handleApply = () => {
+  //   navigate(`/JobDetail/${job.id}`); // navigates to PersonApp page
+  // };
 
   return (
     <div className="saved-job-container">
@@ -46,11 +49,18 @@ const SavedJobList = () => {
                   <FaTrashAlt
                     className="delete-icon"
                     onClick={() => handleDelete(index)}
+                    title="Delete Job"
                   />
-                  <FaEye
-                    className="view-icon"
-                    onClick={() => handleView(job)}
-                  />
+
+                  <Link to={`/job/${job.id}`}>
+                  
+                  <button
+                    className="apply-btn"
+                    // onClick={handleApply}
+                  >
+                    Apply
+                  </button>
+                  </Link>
                 </td>
               </tr>
             ))

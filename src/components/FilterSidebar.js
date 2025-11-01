@@ -164,11 +164,11 @@ const FilterSidebar = ({ updateFilters }) => {
 
       {/* Salary */}
       <div className="filter-section">
-        <h3><FaRupeeSign className="filter-icon" /> Max Salary: ₹{salaryRange.toLocaleString()}</h3>
+        <h3><FaRupeeSign className="filter-icon" /> Min Salary: ₹{salaryRange.toLocaleString()}</h3>
         <input
           type="range"
-          min="0"
-          max="2000000"
+          min="150000"
+          max="400000"
           step="50000"
           value={salaryRange}
           onChange={handleSalaryChange}
