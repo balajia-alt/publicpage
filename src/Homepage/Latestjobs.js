@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Latestjobs.css";
 import { useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import Logo from "./assets/dhatvi.jpg";
+import Logo from "../assets/dhatvi.jpg";
 
 const jobs = [
   { title: "Sr. Web Developer", description: "Responsible for developing and maintaining dynamic web applications. Requires strong skills in JavaScript, React, and backend APIs." },

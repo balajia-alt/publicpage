@@ -2,7 +2,7 @@ import React from "react";
 import "./HeroSection.css";
 import { useNavigate } from "react-router-dom";
 // import Teamwork from "./assets/Teamwork.jpg";
-import Teamwork from "./assets/meeting.jpg";
+import Teamwork from "../assets/meeting.jpg"
 
 const HeroSection = () => {
     const navigate = useNavigate(); // ✅ initialize navigation

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./QuickDetails.css";
-import Logo from "./assets/dhatvi.jpg";
+import Logo from "../assets/dhatvi.jpg";
 import { useNavigate } from "react-router-dom";
 
 const QuickDetails = () => {

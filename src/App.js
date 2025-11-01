@@ -1,22 +1,22 @@
 import React, { useRef } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Navbar from "./Navbar";
-import HeroSection from "./HeroSection";
-import SearchSection from "./SearchSection";
-import AboutSection from "./AboutSection";
-import Latestjobs from "./Latestjobs";
-import Login from "./Login";
-import Register from "./Register";
+import Navbar from "./Homepage/Navbar";
+import HeroSection from "./Homepage/HeroSection";
+import SearchSection from "./Homepage/SearchSection";
+import AboutSection from "./Homepage/AboutSection";
+import Latestjobs from "./Homepage/Latestjobs";
+import Login from "./Login/Login";
+import Register from "./Login/Register";
 import Home from "./Home";
-import QuickDetails from "./QuickDetails";
+import QuickDetails from "./Pages/QuickDetails";
 import PersonIndex from "./components/PersonIndex";
 import "./App.css";
 import Job from "./Job";
-import JobDetail from "./components/JobDetail";
-import Contact from "./components/Contact";
+import JobDetail from "./Jobs/JobDetail";
+import Contact from "./Jobs/Contact";
 // import JobList2 from "./components/JobList2";
-import SavedJobList from "./SavedJobList";
-import AppliedJobList from "./AppliedJobList";
+import SavedJobList from "./Profile/SavedJobList";
+import AppliedJobList from "./Profile/AppliedJobList";
 
 
 

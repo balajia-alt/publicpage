@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import logo from "./assets/dhatvi.jpg";
+import logo from "../assets/dhatvi.jpg";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import WelcomeImg from "./assets/team.jpg";
+import WelcomeImg from "../assets/team.jpg";
 
 function Login({ onLoginSuccess }) {
   const navigate = useNavigate();
