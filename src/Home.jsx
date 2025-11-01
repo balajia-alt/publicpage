@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
-import HeroSection from './HeroSection'
-import SearchSection from './SearchSection'
-import AboutSection from './AboutSection'
+import HeroSection from './Homepage/HeroSection'
+import SearchSection from './Homepage/SearchSection'
+import AboutSection from './Homepage/AboutSection'
 
-import Navbar from './Navbar'
-import Latestjobs from './Latestjobs'
+import Navbar from './Homepage/Navbar'
+import Latestjobs from './Homepage/Latestjobs'
 
 const Home = () => {
 
