@@ -11,7 +11,7 @@ import Home from "./Home";
 import QuickDetails from "./Pages/QuickDetails";
 import PersonIndex from "./components/PersonIndex";
 import "./App.css";
-import Job from "./Job";
+import Job from "./Jobs/Job";
 import JobDetail from "./Jobs/JobDetail";
 import Contact from "./Jobs/Contact";
 // import JobList2 from "./components/JobList2";

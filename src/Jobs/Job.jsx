@@ -29,9 +29,9 @@
 
 
 import React, { useState } from "react";
-import Header from "./components/Header";
-import FilterSidebar from "./components/FilterSidebar";
-import JobList from "./Jobs/JobList";
+import Header from "../components/Header";
+import FilterSidebar from "../components/FilterSidebar";
+import JobList from "./JobList";
 import "./Job.css"; // make sure you have layout styling
 
 const Job = () => {

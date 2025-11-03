@@ -35,7 +35,7 @@ letter-spacing: 0%;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   max-width: 950px;       
-  margin-left: 250px;
+  margin-left: 320px;
   margin-right: auto;
   margin-bottom: 50px;
 }

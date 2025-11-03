@@ -140,12 +140,7 @@ const JobDetail = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Message sent successfully!");
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
-
+  
   const handleApply = () => {
     navigate("/apply"); // ✅ navigate to /apply page
   };
@@ -204,17 +199,7 @@ const JobDetail = () => {
           </div>
         </div>
 
-        {/* Send Message Form */}
-        <div className="send-message-form">
-          <h3>Send Us a Message</h3>
-          <form onSubmit={handleSubmit}>
-            <input name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required />
-            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email Address" required />
-            <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" required />
-            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Your Message" rows={4} required></textarea>
-            <button type="submit" className="send-btn">Send Message</button>
-          </form>
-        </div>
+        
       </aside>
 
       {/* Main Content */}
