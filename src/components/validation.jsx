@@ -18,7 +18,6 @@ export const simpleValidatePersonal = (data) => {
 
   if (!data.phone) errs.phone = 'Phone number is required';
   if (!data.gender) errs.gender = 'Gender is required';
-  if (!data.bloodGroup) errs.bloodGroup = 'Blood group is required';
   if (!data.currentAddress) errs.currentAddress = 'Current address is required';
   if (!data.permanentAddress) errs.permanentAddress = 'Permanent address is required';
   if (!data.pincode) errs.pincode = 'Pincode is required';

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./QuickDetails.css";
 import Logo from "../assets/dhatvi.jpg";
 import { useNavigate } from "react-router-dom";
@@ -26,23 +26,41 @@ const QuickDetails = () => {
 
   const [emailError, setEmailError] = useState("");
 
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("quickDetailsData"));
+    const storedEmail = localStorage.getItem("userEmail");
+    const storedName = localStorage.getItem("userName");
+
+    if (savedData) {
+      setFormData(savedData);
+    }
+
+    if (storedEmail && !savedData?.email) {
+      setFormData((prev) => ({ ...prev, email: storedEmail }));
+    }
+
+    if (storedName && (!savedData?.firstName || !savedData?.lastName)) {
+      const [first, ...rest] = storedName.split(" ");
+      setFormData((prev) => ({
+        ...prev,
+        firstName: first || "",
+        lastName: rest.join(" ") || "",
+      }));
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
-    // ✅ Restrict alphabets only
     const alphaOnly = /^[A-Za-z\s]*$/;
-    // ✅ Restrict numbers only
     const numericOnly = /^[0-9]*$/;
-    // ✅ Restrict CGPA to digits + one decimal
     const cgpaPattern = /^[0-9]*\.?[0-9]*$/;
 
-    // ✅ For file upload
     if (name === "resume") {
       setFormData({ ...formData, resume: files[0] });
       return;
     }
 
-    // ✅ For email validation
     if (name === "email") {
       if (value && !value.endsWith("@gmail.com")) {
         setEmailError("Please enter a valid Gmail address (e.g., example@gmail.com)");
@@ -53,21 +71,19 @@ const QuickDetails = () => {
       return;
     }
 
-    // ✅ Validation by field
     if (["firstName", "lastName", "college", "course", "companyName", "skills"].includes(name)) {
-      if (!alphaOnly.test(value)) return; // block non-alphabets
+      if (!alphaOnly.test(value)) return;
     }
 
     if (["phone", "alternatePhone"].includes(name)) {
-      if (!numericOnly.test(value)) return; // block non-numbers
-      if (value.length > 10) return; // restrict to 10 digits
+      if (!numericOnly.test(value)) return;
+      if (value.length > 10) return;
     }
 
     if (name === "cgpa") {
-      if (!cgpaPattern.test(value)) return; // block invalid CGPA formats
+      if (!cgpaPattern.test(value)) return;
     }
 
-    // ✅ Update state
     setFormData({ ...formData, [name]: value });
   };
 
@@ -81,15 +97,16 @@ const QuickDetails = () => {
 
     console.log("Form Data:", formData);
 
-    // ✅ Save user's submission status
     const userEmail = localStorage.getItem("userEmail");
     if (userEmail) {
       localStorage.setItem(`detailsSubmitted_${userEmail}`, "true");
     }
-    // ✅ Save user form data for autofill
-localStorage.setItem("quickDetailsData", JSON.stringify(formData));
 
-    // ✅ Navigate to main page
+    localStorage.setItem("quickDetailsData", JSON.stringify(formData));
+
+    const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+    localStorage.setItem("userName", fullName);
+
     navigate("/");
   };
 
@@ -104,7 +121,9 @@ localStorage.setItem("quickDetailsData", JSON.stringify(formData));
         </div>
       </div>
 
-      <h2 className="quick-details-title">Basic Details</h2>
+      <div className="header-actions">
+        <h2 className="quick-details-title">Basic Details</h2>
+      </div>
 
       <form className="details-form" onSubmit={handleSubmit}>
         <label>Full name</label>
@@ -231,7 +250,6 @@ localStorage.setItem("quickDetailsData", JSON.stringify(formData));
           </label>
         </div>
 
-        {/* ✅ Skills */}
         <div className="skills-section">
           <label>Skills *</label>
           <input
@@ -244,7 +262,6 @@ localStorage.setItem("quickDetailsData", JSON.stringify(formData));
           />
         </div>
 
-        {/* ✅ Experience Section */}
         {formData.employeeType === "Experience" && (
           <div className="experience-section">
             <label>Current Company Name</label>
@@ -298,3 +315,4 @@ localStorage.setItem("quickDetailsData", JSON.stringify(formData));
 };
 
 export default QuickDetails;
+

@@ -1,12 +1,9 @@
 .quick-details-container {
-  
-  /* margin: 40px auto; */
   font-family: "Poppins", sans-serif;
 }
 
 .quick-details-container-header {
   display: flex;
-  /* margin-bottom: 30px; */
   
   
 }
@@ -28,11 +25,6 @@
 .green-line{
     width: auto;
 }
-/* .quick-details-container .logo-text {
-  /* text-align: center; */
-  /* background: #000; */
-  /* margin-left: 10px; */
-
 
 .quick-details-title {
     font-weight: bolder;
@@ -44,12 +36,7 @@
   margin-bottom: 20px;
 }
 
-/* h2{
-  font-size: 28px;
-  font-weight: 500;
-  color: #333;
-  text-align: center;
-} */
+
 
 .details-form{
     width: 40%;
@@ -147,7 +134,6 @@
   transition: 0.3s;
   width: auto;
 
-  /* Align to the right */
   display: block;
   margin-left: auto;
 }
@@ -254,3 +240,14 @@
   font-size: 14px;
   outline: none;
 }
+
+
+
+
+
+
+
+
+
+
+

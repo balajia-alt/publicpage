@@ -18,9 +18,6 @@ const SavedJobList = () => {
     setJobs(updatedJobs);
   };
 
-  // const handleApply = () => {
-  //   navigate(`/JobDetail/${job.id}`); // navigates to PersonApp page
-  // };
 
   return (
     <div className="saved-job-container">
@@ -56,7 +53,6 @@ const SavedJobList = () => {
                   
                   <button
                     className="apply-btn"
-                    // onClick={handleApply}
                   >
                     Apply
                   </button>

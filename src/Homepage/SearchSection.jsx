@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // ✅ import navigation hook
 import "./SearchSection.css";
 
 const jobsList = [
@@ -15,8 +16,10 @@ const SearchSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [noResults, setNoResults] = useState(false);
-  const [experience, setExperience] = useState(""); // for Experience dropdown
-  const [skill, setSkill] = useState(""); // for Skills dropdown
+  const [experience, setExperience] = useState("");
+  const [skill, setSkill] = useState("");
+
+  const navigate = useNavigate(); // ✅ initialize navigate
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -34,8 +37,9 @@ const SearchSection = () => {
     }
   };
 
+  // ✅ Navigate to Person Application Page
   const handleApply = (job) => {
-    alert(`You applied for ${job}`);
+    navigate("/job/1", { state: { jobTitle: job } }); 
   };
 
   return (

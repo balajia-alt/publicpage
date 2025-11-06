@@ -15,7 +15,7 @@ const AppliedJobList = () => {
 
       <table className="applied-job-table">
         <thead>
-          <tr>
+          <tr className="applied-title-name"  >
             <th>Title</th>
             <th>Job Type</th>
             <th>Applied Date</th>
